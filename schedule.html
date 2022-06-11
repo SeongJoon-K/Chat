@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href='lib/main.css' rel='stylesheet' />
+<link href="css/styles.css" rel="stylesheet" />
+<script src='lib/main.js'></script>
+<script src='lib/locales-all.js'></script>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var initialLocaleCode = 'ko';
+    var localeSelectorEl = document.getElementById('locale-selector');
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      initialDate: '2022-06-12',
+      locale: initialLocaleCode,
+      buttonIcons: false, // show the prev/next text
+      weekNumbers: true,
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      dayMaxEvents: true, // allow "more" link when too many events
+      events: [
+        { // 1. 커피챗
+          title: '카카오 클라우드개발 이순용',
+          start: '2022-06-01',
+        },
+        { // 시간
+          title: 'a.시간 : 16시 ~ 17시',
+          start: '2022-06-01',
+        },
+        { // 2. 커피챗 
+          title: '쿠팡 SCM 물류책임자 JAMES',
+          start: '2022-06-07',
+        },
+        { // 시간
+          title: 'a.시간 : 18시 ~ 19시',
+          start: '2022-06-07',
+        },
+        { // 3. 커피챗
+          title: '배민 백엔드 개발 김자바',
+          start: '2022-06-11',
+        },
+        { // 시간
+          title: 'a.시간 : 협의 후 결정',
+          start: '2022-06-11',
+        },
+        { // 4.커피챗
+          title: '뱅크샐러드 엔지니어 천인우',
+          start: '2022-06-22',
+        },
+        { // 시간
+          title: 'a.시간 : 19시 ~ 20시',
+          start: '2022-06-22',
+        },
+        { // 5.커피챗
+          title: '토스 프론트엔드 김동국',
+          start: '2022-06-21',
+        },
+        { // 시간
+          title: 'a.시간 : 18시 ~ 20시',
+          start: '2022-06-21',
+        },
+        { // 6.커피챗
+          title: '중소기업 잡무 김중소',
+          start: '2022-06-13',
+        },
+        { // 시간
+          title: 'a.시간 : 항시대기',
+          start: '2022-06-13',
+        },
+        { // 7.커피챗
+          title: '당근마켓 PM 아무개',
+          start: '2022-06-08',
+        },
+        { // 시간
+          title: 'a.시간 : 협의 후 결정',
+          start: '2022-06-08',
+        },
+        { // 8.커피챗
+          title: 'Yanolja DataMaketing 홍석천',
+          start: '2022-06-14',
+        },
+        { // 시간
+          title: 'a.시간 : 18시 ~ 20시',
+          start: '2022-06-14',
+        },
+        { // 9.커피챗
+          title: 'Apple Sales 김굿즈',
+          start: '2022-06-15',
+        },
+        { // 시간
+          title: 'a.시간 : 16시 ~ 17시',
+          start: '2022-06-15',
+        },
+        { // 10.커피챗
+          title: '7급공무원 회계 최녹봉',
+          start: '2022-06-29',
+        },
+        { // 시간
+          title: 'a.시간 : 18시 ~ 19시',
+          start: '2022-06-29',
+        },
+        { // 11.커피챗
+          title: '삼성전자 생산관리 김승현',
+          start: '2022-06-30',
+        },
+        { // 시간
+          title: 'a.시간 : 18시 ~ 20시',
+          start: '2022-06-30',
+        },
+        { // 12.커피챗
+          title: '삼성전지 품질관리 이흥구',
+          start: '2022-06-24',
+        },
+        { // 시간
+          title: 'a.시간 : 19시 ~ 20시',
+          start: '2022-06-24',
+        },
+        {
+          title: 'Click for Google',
+          url: 'http://google.com/',
+          start: '2020-09-28'
+        }
+      ]
+    });
+
+    calendar.render();
+
+    // build the locale selector's options
+    calendar.getAvailableLocaleCodes().forEach(function(localeCode) {
+      var optionEl = document.createElement('option');
+      optionEl.value = localeCode;
+      optionEl.selected = localeCode == initialLocaleCode;
+      optionEl.innerText = localeCode;
+      localeSelectorEl.appendChild(optionEl);
+    });
+
+    // when the selected option changes, dynamically change the calendar option
+    localeSelectorEl.addEventListener('change', function() {
+      if (this.value) {
+        calendar.setOption('locale', this.value);
+      }
+    });
+
+  });
+
+</script>
+<style>
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #top {
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+    padding: 0 10px;
+    line-height: 40px;
+    font-size: 12px;
+  }
+
+  #calendar {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 10px;
+  }
+
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-5">
+        <a class="navbar-brand" href="index.html">Dongguk Chat </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="reserve.html">Reserve</a></li>
+              <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+              <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+  <div id='top'>
+
+    Locales:
+    <select id='locale-selector'></select>
+
+  </div>
+
+  <div id='calendar'></div>
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+  <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; SEONGJOONKIM</p></div>
+</footer>
+</body>
+</html>
